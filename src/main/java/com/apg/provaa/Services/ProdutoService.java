@@ -27,7 +27,16 @@ public class ProdutoService {
         return produtoRepository.findById(id).get();
     }
 
-    public ProdutoModel atualizarProd(ProdutoModel produtoModel, Long id) {
+    public ProdutoModel atualizarProd(ProdutoModel produtoexistente, Long id) {
+        produtoexistente = produtoRepository.findById(id).get();
+
+        produtoexistente.setNome(produtoexistente.getNome());
+        produtoexistente.setPreco(produtoexistente.getPreco());
+        produtoexistente.setDescricao(produtoexistente.getDescricao());
+        produtoexistente.setId(produtoexistente.getId());
+        produtoexistente.setStatus(produtoexistente.getStatus());
+
+        return produtoRepository.save(produtoexistente);
 
     }
 
